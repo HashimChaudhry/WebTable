@@ -287,8 +287,6 @@ function confirmEdit() {
     clearButton("editButton");
     makeHidden("editButton");
 
-
-
     // Wrapper containers
     name = document.createTextNode(name);
     email = document.createTextNode(email);
@@ -302,6 +300,11 @@ function confirmEdit() {
     let levelCell = newRow.insertCell(2);
     let removeCell = newRow.insertCell(3);
 
+    // Add necessary classes to the cells
+    nameCell.classList.add("webTable_data");
+    emailCell.classList.add("webTable_data");
+    levelCell.classList.add("webTable_data");
+
     // Set the class value for remove cell
     removeCell.classList.add("removeHidden");
 
@@ -311,6 +314,12 @@ function confirmEdit() {
     image.classList.add("tableButton");
     image.classList.add("removeButton");
     image.addEventListener("click", deleteRow);
+
+    // Add an event to each table cell
+    addListenerToClass("webTable_data", "click", editTable);
+
+    // Restyle edited row
+    oddRowStyle(table, index);
 
     // Append the form values to the row
     nameCell.appendChild(name);
