@@ -1,0 +1,106 @@
+/* Global settings */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.left {
+    display: flex;
+    justify-content:  flex-end;
+    align-items: center;
+}
+
+
+
+/* Navigation layout settings and format*/
+#navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -100px 100px black;
+    background-color: white;
+}
+
+#navFlexBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+/* Set up Image space and set logo dimensions */
+#navImage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+#logo {
+    max-width: 150px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    margin-left: 70px;
+}
+
+/* Set up links to other pages */
+#links {
+    margin-left: 450px;
+}
+
+.navLink {
+    padding: 0 10px 0 10px;
+    color: black;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: #C70404;
+}
+
+/* Finally, set up the Sign Up and Login Buttons */
+#logIn {
+    margin-left: 30px;
+    margin-right: 20px;
+    text-decoration: none;
+    border: 1px solid black;
+    background-color: white;
+    color: #a80000;;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80px;
+    text-align: center;
+    transition-property: background-color, color;
+    transition-duration: 0.5s, 0.5s;
+}
+
+#logIn:hover {
+    background: #a80000;;
+    color: white;
+}
+
+#signUp {
+    margin-left: 5px;
+    margin-right: 40px;
+    text-decoration: None;
+    border: 1px solid black;
+    color: white;
+    background-color: #a80000;;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 60px;
+    transition-property: background-color, color;
+    transition-duration: 0.5s, 0.5s;
+}
+
+#signUp:hover {
+    background: white;
+    color: #a80000;
+}

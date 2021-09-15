@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Table</title>
+
+    <link rel = "stylesheet" type="text/css" href = "../css/navBar.css"/>
+    <link rel = "stylesheet" type="text/css" href = "../css/instructions.css"/>
+    <link rel = "stylesheet" type="text/css" href = "../css/table.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"/>
+</head>
+
+<body>
+
+    <!-- div for navigation bar -->
+    <div id="navBar">
+
+
+            <div id="navFlexBox">
+                <div id="navImage">
+                    <a href = ""><img id = "logo" alt = "Logo Here" src = "../assets/logo.svg" /></a>
+
+                </div>
+            </div>
+
+
+            <div class = "left">
+                <div id = "links">
+                    <a class = "navLink" href = "">Home</a>
+                    <a class = "navLink" href = "">Products</a>
+                    <a class = "navLink" href = "">Pricing</a>
+                    <a class = "navLink" href = "">About</a>
+
+
+
+                </div>
+
+                <a id = "logIn" href = "">Log In</a>
+                <a id = "signUp"  href = "">Sign Up</a>
+
+            </div>
+    </div>
+
+
+    <!-- Setup instructions on how to use the table -->
+    <div id = "infoContainer">
+        <div id = "infoText">
+            <div class = "flexCenter">
+                <h1 id = "infoHeader" >Student Table</h1>
+
+                <p id = "info">
+                    Our table is designed to make managing and keeping your class contacts in one place simple and easy.
+                    Just press the add entry button to add and entry, or delete entries with the delete entry button.
+                    You also  have access to in-table editing that allows you to make changes to the table
+                    directly, so you can see real time updates as you manage your class.
+                </p>
+            </div>
+        </div>
+
+        <div id="infoAsset">
+            <div class = "leftFlex">
+                <img id = "redBackground" alt = "Product Logo" src="../assets/BlueWave.png"/>
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr />
+
+    <!-- Table Creation for JS widget-->
+    <div id= "tableContainer">
+        <table id = "webTable">
+            <thead>
+                <tr id= "columns">
+                    <th scope = "col">Name</th>
+                    <th scope = "col">Email</th>
+                    <th scope = "col">Level</th>
+                </tr>
+            </thead>
+
+            <tr class = "odd" id = "webTable_row_1">
+                <td class = "webTable_data">Hashim</td>
+                <td class = "webTable_data">hashim0131@gmail.com</td>
+                <td class = "webTable_data">Undergraduate</td>
+                <td class = "removeHidden"><img class = "tableButton removeButton" src = "../assets/delete.png"></td>
+            </tr>
+
+            <tr id = "webTable_row_2">
+                <td class = "webTable_data">Bill</td>
+                <td class = "webTable_data">bill@hotmail.com</td>
+                <td class = "webTable_data">Undergraduate</td>
+                <td class = "removeHidden"><img class = "tableButton removeButton" src = "../assets/delete.png"></td>
+            </tr>
+
+            <tr class = "odd" id = "webTable_row_3">
+                <td class = "webTable_data">Hashim</td>
+                <td class = "webTable_data">hashim0131@gmail.com</td>
+                <td class = "webTable_data">Undergraduate</td>
+                <td class = "removeHidden"><img id = "test" class = "tableButton removeButton" src = "../assets/delete.png"></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id = "tableActions">
+        <div id = "add">
+            <p id="addButton"><img class = "tableButton" src = "../assets/add.png">Add Item</p>
+        </div>
+
+        <div id = "confirm">
+            <p id = "confirmButton" class = "hidden"></p>
+        </div>
+
+        <div id = "cancel">
+            <p id = "cancelButton" class = "hidden"></p>
+        </div>
+
+        <div id = "confirmEdit">
+            <p id = "editButton" class = "hidden"></p>
+        </div>
+    </div>
+
+    <script src="../javascript/tableFunctions.js"></script>
+    <script src="../javascript/table.js"></script>
+
+</body>
+</html>

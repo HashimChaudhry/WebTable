@@ -1,0 +1,72 @@
+/* Global Settings */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.flexCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 700px;
+}
+
+.leftFlex {
+    display: flex;
+}
+
+
+/* Style and position the container for the instructions */
+#infoContainer {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    background-color: #F5F5F5;
+}
+
+#infoText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+    margin-right: 2px;
+    margin-left: 80px;
+}
+
+#infoHeader {
+    font-family:  "Montserrat", serif;
+    font-size: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#info {
+    text-align: left;
+    font-family: "Montserrat", serif;
+    font-size: 20px;
+    line-height: 30px;
+    width: 700px;
+}
+
+#infoAsset {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+
+}
+
+#redBackground {
+    position: relative;
+    width: auto;
+    height: auto;
+    max-height: 500px;
+    max-width: 500px;
+}
+
+hr {
+    margin-top: 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
