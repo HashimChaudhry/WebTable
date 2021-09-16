@@ -20,47 +20,14 @@ function addRow() {
     makeVisible("confirmButton");
     makeVisible("cancelButton");
 
-    // Now, we need to add the form that will allow the user to add the row
-    // Create some new cells for the form
-
-    // Now, we need to add the form that will allow the user to add the row
-    // Create some new cells for the form
-    let nameCell  = newRow.insertCell(0);
-    let emailCell = newRow.insertCell(1);
-    let levelCell = newRow.insertCell(2);
-    let removeCell = newRow.insertCell(3);
-
-    // Set the class value for remove cell
-    removeCell.classList.add("removeHidden");
-
-    // Add an image to the remove Cell
-    let image = document.createElement("img");
-    image.src = "../assets/delete.png";
-    image.classList.add("tableButton");
-    image.classList.add("removeButton");
-    removeCell.appendChild(image);
-
-    // We need to add an event handler to this removeCell
-    image.addEventListener("click", cancelAdd)
-
-
     // Now, add generate some inputs to each row
-    let name = document.createElement("input");
-    let email = document.createElement("input");
+    let name = createInput("text", "webTable_name");
+    let email = createInput("text", "webTable_email");
     let level = createDropdown(-1);
 
-    // Set the input types for text boxes
-    name.type = 'text';
-    email.type = 'text';
-
-    name.id = "webTable_name";
-    email.id = "webTable_email";
-
     // Append the inputs to the table row
-    nameCell.appendChild(name);
-    emailCell.appendChild(email);
-    levelCell.appendChild(level);
-    removeCell.appendChild(image);
+    setUpCells(newRow, name, email, level, cancelAdd, false);
+
 }
 
 // Function that will add a row to the list
@@ -78,27 +45,10 @@ function confirmAdd() {
     newRow.classList.add("webTable_row");
     newRow.addEventListener("click", editTable); // Add the event listener to the row
 
-    // Now, we need to add the form that will allow the user to add the row
-    // Create some new cells for the form
-    let nameCell  = newRow.insertCell(0);
-    let emailCell = newRow.insertCell(1);
-    let levelCell = newRow.insertCell(2);
-    let removeCell = newRow.insertCell(3);
-
-    // Set the class value for remove cell
-    removeCell.classList.add("removeHidden");
-
-    // Add an image to the remove Cell
-    let image = document.createElement("img");
-    image.src = "../assets/delete.png";
-    image.classList.add("tableButton");
-    image.classList.add("removeButton");
-    image.addEventListener("click", deleteRow);
-
     // Get the values in each form input
-    let nameValue = name.value;
-    let emailValue = email.value;
-    let levelValue = level.value;
+    name = name.value;
+    email = email.value;
+    level = level.value;
 
     // Remove the row from the table
     document.getElementById("webTable").deleteRow(numRows - 1);
@@ -107,24 +57,8 @@ function confirmAdd() {
     // Now append these to the table and style accordingly
     oddRowStyle(table, numRows);
 
-    // Add an ID to the cells
-    nameCell.classList.add("webTable_data");
-    emailCell.classList.add("webTable_data");
-    levelCell.classList.add("webTable_data");
-
-
-    image.addEventListener("click", deleteRow);
-
-    // Create text values we can add to the rows
-    nameValue = document.createTextNode(nameValue);
-    emailValue = document.createTextNode(emailValue);
-    levelValue = document.createTextNode(levelValue);
-
-    // Append it to the end of the table
-    nameCell.appendChild(nameValue);
-    emailCell.appendChild(emailValue);
-    levelCell.appendChild(levelValue);
-    removeCell.appendChild(image);
+    // Set up the cells
+    setUpCells(newRow, name, email, level, deleteRow, true);
 
     // Make visibility of confirm buttons hidden again
     clearButton("confirmButton");
@@ -202,7 +136,7 @@ function editTable(e) {
     let level = target.cells[2].innerHTML;
 
     // Get value of level for dropdown
-    let levelValue = -1;
+    let levelValue;
     if(level === "Undergraduate") {
         levelValue = 0;
     } else if(level === "Masters") {
@@ -219,43 +153,17 @@ function editTable(e) {
     // Now, rewrite the row but with text boxes and form options
     let newRow = table.insertRow(index);
 
-    let nameCell  = newRow.insertCell(0);
-    let emailCell = newRow.insertCell(1);
-    let levelCell = newRow.insertCell(2);
-    let removeCell = newRow.insertCell(3);
-
-    // Set the class value for remove cell
-    removeCell.classList.add("removeHidden");
-
-    // Add an image to the remove Cell
-    let image = document.createElement("img");
-    image.src = "../assets/delete.png";
-    image.classList.add("tableButton");
-    image.classList.add("removeButton");
-    image.addEventListener("click", deleteRow);
-
     // Now add the form options
-    let nameInput = document.createElement("input");
-    let emailInput = document.createElement("input");
+    let nameInput = createInput("text", "webTable_name", name)
+    let emailInput = createInput("text", "webTable_email", email)
     let levelInput = createDropdown(levelValue);
-
-    // Set the input types for text boxes
-    nameInput.type = 'text';
-    emailInput.type = 'text';
-
-    nameInput.id = "webTable_name";
-    emailInput.id = "webTable_email";
 
     // Set the default values for these inputs based on previous values
     nameInput.value = name;
     emailInput.value = email;
 
-    // Append all values
-    nameCell.appendChild(nameInput);
-    emailCell.appendChild(emailInput);
-    levelCell.appendChild(levelInput);
-    removeCell.appendChild(image);
-
+    // Set up the cells
+    setUpCells(newRow, nameInput, emailInput, levelInput, deleteRow, false);
 
 }
 
@@ -304,8 +212,6 @@ function confirmEdit() {
     nameCell.classList.add("webTable_data");
     emailCell.classList.add("webTable_data");
     levelCell.classList.add("webTable_data");
-
-    // Set the class value for remove cell
     removeCell.classList.add("removeHidden");
 
     // Add an image to the remove cell
@@ -329,20 +235,24 @@ function confirmEdit() {
 
 }
 
-// Create an event for the add to button allow us to add an element
-addClickHandler("addButton", addRow);
+function addEvents() {
+    // Create an event for the add to button allow us to add an element
+    addClickHandler("addButton", addRow);
 
-// Create an event for the confirm button to confirm addition of a new row
-addClickHandler("confirmButton", confirmAdd);
+    // Create an event for the confirm button to confirm addition of a new row
+    addClickHandler("confirmButton", confirmAdd);
 
-// Create an event to cancel an add of a new row
-addClickHandler("cancelButton", cancelAdd);
+    // Create an event to cancel an add of a new row
+    addClickHandler("cancelButton", cancelAdd);
 
-// Event handler for removing a row
-addListenerToClass("removeButton", "click", deleteRow);
+    // Event handler for removing a row
+    addListenerToClass("removeButton", "click", deleteRow);
 
-// Event handler to edit table
-addListenerToClass("webTable_data", "click", editTable);
+    // Event handler to edit table
+    addListenerToClass("webTable_data", "click", editTable);
 
-// Event handler to confirm edits to the table
-addClickHandler("editButton", confirmEdit);
+    // Event handler to confirm edits to the table
+    addClickHandler("editButton", confirmEdit);
+}
+
+addEvents();

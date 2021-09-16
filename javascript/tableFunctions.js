@@ -55,6 +55,50 @@ function getInfo() {
 
 }
 
+function createInput(type, id = "", value = "") {
+    let input = document.createElement("input");
+    input.type = type;
+    input.id = id;
+    input.value = value;
+
+    return input;
+}
+
+function setUpCells(newRow, name, email, level, imageEvent, isTextNode) {
+    let nameCell  = newRow.insertCell(0);
+    let emailCell = newRow.insertCell(1);
+    let levelCell = newRow.insertCell(2);
+    let removeCell = newRow.insertCell(3);
+
+    // Set the class value for remove cell
+    removeCell.classList.add("removeHidden");
+    nameCell.classList.add("webTable_data");
+    emailCell.classList.add("webTable_data");
+    levelCell.classList.add("webTable_data");
+
+    // Add an image to the remove Cell
+    let image = document.createElement("img");
+    image.src = "../assets/delete.png";
+    image.classList.add("tableButton");
+    image.classList.add("removeButton");
+    image.alt = "remove";
+    image.addEventListener("click", cancelAdd)
+
+    // If we need a text node, do the conversion
+    if(isTextNode) {
+        name = document.createTextNode(name);
+        email = document.createTextNode(email);
+        level = document.createTextNode(level);
+    }
+
+    nameCell.appendChild(name);
+    emailCell.appendChild(email);
+    levelCell.appendChild(level);
+    removeCell.appendChild(image);
+}
+
+
+
 function addListenerToClass(className, event, functionName) {
     let elements = document.getElementsByClassName(className);
 
