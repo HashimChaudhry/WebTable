@@ -97,8 +97,6 @@ function setUpCells(newRow, name, email, level, imageEvent, isTextNode) {
     removeCell.appendChild(image);
 }
 
-
-
 function addListenerToClass(className, event, functionName) {
     let elements = document.getElementsByClassName(className);
 
