@@ -117,14 +117,16 @@ function deleteRow(e) {
 
 // Function that allows in-table editing for the user
 function editTable(e) {
-    //  Make the Add Edit button visible to confirm if the user wants to edit the row
-    fillButton("editButton", "Add Edit");
-    makeVisible("editButton");
-
     // Check to ensure that an edit isn't already being done
     if(document.getElementById("webTable_name")) {
         return;
     }
+
+    //  Make the Add Edit button visible to confirm if the user wants to edit the row
+    fillButton("editButton", "Add Edit");
+    makeVisible("editButton");
+
+
 
     // We first need to get the table row the user selected
     if(!e) {
