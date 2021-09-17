@@ -153,3 +153,76 @@ function restyleRows(table, rowStart) {
         oddRowStyle(table, i);
     }
 }
+
+// Function that sanitizes all form inputs to prevent XSS attacks
+// Note that this function cannot be relied upon; if Javascript is
+// disabled, then a malicious user may be able to use XSS attacks.
+// Always do input validation on the server-side with a back-end language
+function sanitizeInput(field) {
+    let symbols = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+        "`": '&grave'
+    };
+
+    const reg = /[&<>"'/]/ig;
+    return field.replace(reg, (match)=>(symbols[match]));
+}
+
+// Function that validates email
+function validEmail(field) {
+    if(field === "") {
+        return false;
+    } else if(!((field.indexOf(".") > 0) && (field.indexOf("@") > 0)) || /[^a-zA-Z0-9.@_-]/.test(field)) {
+        return false;
+    }
+
+    return true;
+}
+
+// Function that checks to see if field is empty from form input
+function isEmpty(field) {
+    return field === "";
+}
+
+// Function that displays error message
+function errorMessage(id, msg) {
+    // Sanitize all input
+    msg = sanitizeInput(msg);
+
+    // Set up the element's error message
+    let element = document.getElementById(id);
+    element.innerText = msg;
+}
+
+// Specific function for validating input in this table
+function validInfo(name, email) {
+    let msg = "";
+
+    // Sanitize all user-entered input
+    name = sanitizeInput(name);
+    email = sanitizeInput(email);
+
+    // Make necessary checks to ensure that data entered is valid
+    if(isEmpty(name) || isEmpty(email)) {
+        msg += "One or more fields are empty; ";
+    }
+
+    if(!validEmail(email)) {
+        msg += "Email is invalid; ";
+    }
+
+    if(msg !== "") { // If there is a message to display, do it now
+        errorMessage("warningMessage", msg);
+        makeVisible("warning");
+        return false; // Exit early
+    } else {
+        makeHidden("warning");
+        errorMessage("warningMessage", "");
+        return true;
+    }
+}

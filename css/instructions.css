@@ -70,3 +70,14 @@ hr {
     margin-left: auto;
     margin-right: auto;
 }
+
+#warning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+#warningMessage {
+    color: red;
+}

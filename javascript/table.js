@@ -37,18 +37,28 @@ function confirmAdd() {
     let email = document.getElementById("webTable_email");
     let level = document.getElementById("webTable_level");
 
+    // Error message details
+    let msg = ""; // Error message to display
+
     // Set up the table for adding a cell
     let info = getInfo();
     let table = info.table;
     let numRows = info.numRows;
-    let newRow = table.insertRow(numRows); // Add a row at the end of the list
-    newRow.classList.add("webTable_row");
-    newRow.addEventListener("click", editTable); // Add the event listener to the row
 
     // Get the values in each form input
     name = name.value;
     email = email.value;
     level = level.value;
+
+    // Validate table
+    if(!validInfo(name, email)) {
+        return;
+    }
+
+    // Insert the new row
+    let newRow = table.insertRow(numRows); // Add a row at the end of the list
+    newRow.classList.add("webTable_row");
+    newRow.addEventListener("click", editTable); // Add the event listener to the row
 
     // Remove the row from the table
     document.getElementById("webTable").deleteRow(numRows - 1);
@@ -185,9 +195,13 @@ function confirmEdit() {
 
     console.log(rowEdited);
 
+    // Validate table
+    if(!validInfo(name, email)) {
+        return;
+    }
+
     // Delete the current row
     table.deleteRow(index);
-
 
     let newRow = table.insertRow(index);
 
@@ -199,7 +213,6 @@ function confirmEdit() {
     name = document.createTextNode(name);
     email = document.createTextNode(email);
     level = document.createTextNode(level);
-
 
     // Now create a new row that has all of the data collected
     // Create some new cells for the form
