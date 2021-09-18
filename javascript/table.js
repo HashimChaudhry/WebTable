@@ -143,7 +143,6 @@ function editTable(e) {
     let table = document.getElementById("webTable");
 
 
-    console.log(target.cells[0])
     // Get the values from the row
     let name = target.cells[0].innerHTML;
     let email = target.cells[1].innerHTML;
@@ -197,8 +196,6 @@ function confirmEdit() {
     let rowEdited = document.getElementById("webTable_name");
     rowEdited = rowEdited.parentElement.parentElement;
     let index = rowEdited.rowIndex;
-
-    console.log(rowEdited);
 
     // Validate table
     if(!validInfo(name, email)) {
