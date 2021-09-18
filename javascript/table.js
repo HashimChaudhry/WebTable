@@ -28,6 +28,7 @@ function addRow() {
     // Append the inputs to the table row
     setUpCells(newRow, name, email, level, cancelAdd, false);
 
+    document.addEventListener("keydown", addEnter);
 }
 
 // Function that will add a row to the list
@@ -75,6 +76,9 @@ function confirmAdd() {
     clearButton("cancelButton");
     makeHidden("confirmButton");
     makeHidden("cancelButton");
+
+    // Clear hotkeys
+    document.removeEventListener("keydown", addEnter);
 }
 
 // Function that allows us to cancel a row
@@ -126,8 +130,6 @@ function editTable(e) {
     fillButton("editButton", "Add Edit");
     makeVisible("editButton");
 
-
-
     // We first need to get the table row the user selected
     if(!e) {
         e = window.event;
@@ -175,8 +177,9 @@ function editTable(e) {
     emailInput.value = email;
 
     // Set up the cells
-    setUpCells(newRow, nameInput, emailInput, levelInput, deleteRow, false);
+    setUpCells(newRow, nameInput, emailInput, levelInput, cancelEdit, false);
 
+    document.addEventListener('keydown', editEnter);
 }
 
 // Function that confirms any edits to the table
@@ -248,7 +251,10 @@ function confirmEdit() {
     levelCell.appendChild(level);
     removeCell.appendChild(image);
 
+    // Remove bindings on hotkeys
+    document.removeEventListener('keydown', editEnter);
 }
+
 
 function addEvents() {
     // Create an event for the add to button allow us to add an element

@@ -82,7 +82,7 @@ function setUpCells(newRow, name, email, level, imageEvent, isTextNode) {
     image.classList.add("tableButton");
     image.classList.add("removeButton");
     image.alt = "remove";
-    image.addEventListener("click", cancelAdd)
+    image.addEventListener("click", imageEvent)
 
     // If we need a text node, do the conversion
     if(isTextNode) {
@@ -226,3 +226,42 @@ function validInfo(name, email) {
         return true;
     }
 }
+
+// Adds keyboard events for enter keys
+function addEnterEvents(func) {
+    document.addEventListener('keydown', (event) => {
+        let name = event.key;
+
+        if(name === "Enter" || name === "Escape") {
+            func();
+        }
+    });
+}
+
+// Add enter function for table (allows hotkeys for table)
+function addEnter(e) {
+    let name = e.key;
+
+    if (name === "Enter" || name === "Escape") {
+        confirmAdd();
+    }
+}
+
+// Edit enter function for table (allows hotkeys for table)
+function editEnter(e) {
+    let name = e.key;
+
+    if (name === "Enter" || name === "Escape") {
+        confirmEdit();
+    }
+}
+
+// Function that handles deleting a row that is being edited
+function cancelEdit() {
+    cancelAdd();
+
+    // Make visibility of edit buttons hidden
+    clearButton("editButton");
+    makeHidden("editButton");
+}
+
