@@ -260,6 +260,12 @@ function editEnter(e) {
     if (name === "Enter" || name === "Escape") {
         confirmEdit();
     }
+
+    // Hide Buttons
+    clearButton("confirmButton");
+    clearButton("cancelButton");
+    makeHidden("confirmButton");
+    makeHidden("cancelButton");
 }
 
 // Function that handles deleting a row that is being edited
