@@ -110,36 +110,42 @@ function createDropdown(index) {
     let level = document.createElement("select");
 
     // For the level, add options to select from
-    let undergrad = document.createElement("option");
-    let masters = document.createElement("option");
-    let phd = document.createElement("option");
+    let freshman = document.createElement("option");
+    let sophomore = document.createElement("option");
+    let junior = document.createElement("option");
+    let senior = document.createElement("option");
 
     // Add values to the option and set them up
-    undergrad.value = "Undergraduate";
-    masters.value = "Masters";
-    phd.value = "PhD";
+    freshman.value = "Freshman";
+    sophomore.value = "Sophomore";
+    junior.value = "Junior";
+    senior.value = "Senior";
 
     // If we need a default index selected, do it now
     if(index === 0) {
-        undergrad.selected = true;
+        freshman.selected = true;
     } else if (index === 1) {
-        masters.selected = true;
+        sophomore.selected = true;
     } else if(index === 2) {
-        phd.selected = true;
+        junior.selected = true;
+    } else if(index === 3) {
+        senior.selected = true;
     }
 
     // Add some text in between the option tags for the user
-    undergrad.textContent = "Undergraduate";
-    masters.textContent = "Masters";
-    phd.textContent = "PhD";
+    freshman.textContent = "Freshman";
+    sophomore.textContent = "Sophomore";
+    junior.textContent = "Junior";
+    senior.textContent = "Senior"
 
     // Set up element ID
     level.id = "webTable_level";
 
     // Append the selection values to the form element
-    level.appendChild(undergrad);
-    level.appendChild(masters);
-    level.appendChild(phd);
+    level.appendChild(freshman);
+    level.appendChild(sophomore);
+    level.appendChild(junior);
+    level.appendChild(senior);
 
     return level;
 }

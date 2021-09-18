@@ -150,13 +150,15 @@ function editTable(e) {
 
     // Get value of level for dropdown
     let levelValue;
-    if(level === "Undergraduate") {
+    if(level === "Freshman") {
         levelValue = 0;
-    } else if(level === "Masters") {
+    } else if(level === "Sophomore") {
         levelValue = 1;
-    } else if(level === "PhD") {
+    } else if(level === "Junior") {
         levelValue = 2;
-    } else {
+    } else if(level === "Senior")
+        levelValue = 3;
+    else {
         levelValue = -1;
     }
 
