@@ -258,7 +258,17 @@ function editEnter(e) {
 
 // Function that handles deleting a row that is being edited
 function cancelEdit() {
-    cancelAdd();
+    // Get the table row where the edits are to be committed
+    let rowEdited = document.getElementById("webTable_name");
+    rowEdited = rowEdited.parentElement.parentElement;
+    console.log(rowEdited);
+
+    let index = rowEdited.rowIndex;
+
+    removeRow("webTable", index);
+
+    // Restyle Rows
+    restyleRows(document.getElementById("webTable"), index)
 
     // Make visibility of edit buttons hidden
     clearButton("editButton");
